@@ -34,3 +34,8 @@ Cargo is basically the compiler and package manager for Rust. Always use it in a
   - for building a release version run `cargo build --release` instead. this will make the executable file in `target/release`
 - you can compile and run the executable with `cargo run`
 - you can check if the project can be compiled without errors with `cargo check`
+
+## The `!`
+
+you need to put `!` at the end of Rust's in-built methods and functions like `println!`, if you don't it won't consider it as a Rust
+in-built method/function but search for function defined `println` in the file.
