@@ -6,3 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# on running `cargo build`, cargo fetches the rand package from crates.io
+# the dependencies are located at target/debug/deps
+rand = "0.8.5"
