@@ -65,3 +65,31 @@ In the above we are not assigning to `guess` but we are declaring it as a string
 ## String Interpolation
 
 Basically inserting a variable or smh into a string, what we do in javascript, with `${}` inside strings. In Rust, we do it with just `{}`
+
+## Dependencies
+
+You can install dependencies by updating `cargo.toml` with the dep name and version. The next time you then run `cargo run` or
+`cargo build` it will get that dep from crates.io
+
+## `match`
+
+It is a bit similar to `switch` in other languages, it takes a condition compares it with an Enum and runs cases based on that.
+Here's an example from the Rust docs:
+
+```rust
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+```

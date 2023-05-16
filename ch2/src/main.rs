@@ -53,6 +53,7 @@ fn main() {
                 println!("Please enter a number!");
                 continue;
             },
+            // the `parse()` method returns a `Result` type, which is an enum with the variants `Ok` and `Err`
         };
         // converts guess from number to an undefined 32-bit
                                            // integer
