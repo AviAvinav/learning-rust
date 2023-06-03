@@ -93,3 +93,30 @@ fn value_in_cents(coin: Coin) -> u8 {
     }
 }
 ```
+
+## `loop`
+
+The `loop` keyword indicates an infinite loop unlike condition based `while` & `for` loops. Here's an example from the Rust docs:
+
+```rust
+// Infinite loop
+loop {
+    count += 1;
+
+    if count == 3 {
+        println!("three");
+
+        // Skip the rest of this iteration
+        continue;
+    }
+
+    println!("{}", count);
+
+    if count == 5 {
+        println!("OK, that's enough");
+
+        // Exit this loop
+        break;
+    }
+}
+```
