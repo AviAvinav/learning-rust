@@ -62,6 +62,8 @@ let mut guess = String::new();
 In the above we are not assigning to `guess` but we are declaring it as a string. Of course, you can also declare it with a value like
 `let mut guess = "stuff"`
 
+**NOTE**: Variables are always scoped, use [`const`](#Constants) to define globally.
+
 ## String Interpolation
 
 Basically inserting a variable or smh into a string, what we do in javascript, with `${}` inside strings. In Rust, we do it with just `{}`
@@ -120,3 +122,45 @@ loop {
     }
 }
 ```
+
+## Constants
+
+Constants in Rust are sort of like variables, since, here variables are immutable by default, but while variables can be made mutable
+with the `mut` keyword, constant are forever immutable. Also, you need to give it a type on initiation unlike variables where it isn't
+necessary. Constants can either be scoped or global.
+
+**NOTE**: The naming convention in Rust for constants is to use all uppercase with underscores between words
+
+Example:
+
+```rust
+const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
+```
+
+## Shadowing
+
+In Rust, you can redeclare a variable, after it has been initially declared, the redeclared value is considered for evaluation by the
+compiler. This is called shadowing, as in the new declaration overshadows the inital one (only after the second declaration). For example:
+
+```rust
+let x = 5;
+
+println!("The value of x (initial) is: {x}");
+
+let x = x + 1;
+
+println!("The value of x (shadowed) is: {x}");
+```
+
+The output would be like this:
+
+```
+The value of x (initial) is: 5
+The value of x (shadowed) is 6
+```
+
+**NOTE**: Shadowing is different from marking a variable as `mut` because we’ll get a compile-time error if we accidentally try to reassign to this
+variable without using the `let` keyword. By using let, we can perform a few transformations on a value but have the variable be immutable
+after those transformations have been completed. (From Rust docs)
+
+With shadowing you can also change a variable's type you cannot do that with mutability.
