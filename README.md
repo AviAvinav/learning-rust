@@ -27,7 +27,7 @@ Comments can be written like this:
 
 ## Cargo
 
-Cargo is basically the compiler and package manager for Rust. Always use it in a real project.
+Cargo is the compiler and package manager for Rust. Always use it in a real project.
 
 - a new project can be made with `cargo new project_name`
 - you can compile the project with `cargo build`. this will make the executable in `target/debug`
