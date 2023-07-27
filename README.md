@@ -256,3 +256,49 @@ You can access array elements normally like `a[0]`.
 
 If you try to access an element outside the scope of the array, that is for example if the array has 5 elements but you want `a[10]` it will
 throw a runtime error. This is an example of Rust’s memory safety principles in action. In many low-level languages, this kind of check is not done, and when you provide an incorrect index, invalid memory can be accessed. Rust protects you against this kind of error by immediately exiting instead of allowing the memory access and continuing
+
+## Functions
+
+As already mentioned the `main()` function is the heart of everything, so won't talk anything more about it.
+
+So basic stuff:
+
+- `fn` keyword is used to define a function
+- Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words
+- Rust doesn't care where you define your functions, you can define after or before the `main()` function and still use it inside of it.
+- Function parameters always need to be typed
+
+Example of a function with parameters:
+
+```rust
+fn print_labeled_measurement(value: i32, unit_label: char) {
+    println!("The measurement is: {value}{unit_label}");
+}
+```
+
+**Note**: You cannot do something like this in Rust: `let x = (let y = 6);`, because statements & expressions are different things here. Statements are instructions that perform some action and do not return a value.
+Expressions evaluate to a resultant value.
+
+However you can do this:
+
+```rust
+let y = {
+    let x = 3;
+    x + 1
+};
+```
+
+because everything in the curly brackets is considered an expression, so y=4 in this case.
+
+**VERY IMP NOTE**: Expressions do not include ending semicolons. If you add a semicolon to the end of an expression, you turn it into a statement, and it will then not return a value. Keep this in mind as you explore function return values and expressions next.
+
+- you can specify a function's return type like this: `fn five() -> i32`
+- `()` is the unit type if you give it to a function that means the function must not return anything.
+
+## What is `{:?}`?
+
+{...} surrounds all formatting directives. : separates the name or ordinal of the thing being formatted (which in this case is omitted, and thus means "the next thing") from the formatting options. The ? is a formatting option that triggers the use of the std::fmt::Debug implementation of the thing being formatted, as opposed to the default Display trait, or one of the other traits (like UpperHex or Octal).
+
+Thus, {:?} formats the "next" value passed to a formatting macro, and supports anything that implements Debug.
+
+More: https://doc.rust-lang.org/std/fmt/index.html
