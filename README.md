@@ -350,3 +350,114 @@ to an error. So, the values in if-else during assignment to a variable should be
 
 This is just my opinion from what I have learned until now. but the Rust is fast (one of the many reasons) is that it knows the types of everything in advance,
 it doesn't have to wait to determine the types at runtime, where it has to take into account multiple different situations depending on the type determined at runtime.
+
+## Loops
+
+We have discussed a bit about `loop` earlier, more on that now. There are 3 types of loops in Rust: `loop`, `while`, `for`.
+
+"One of the uses of a `loop` is to retry an operation you know might fail, such as checking whether a thread has completed its job. You might also need to pass the result
+of that operation out of the loop to the rest of your code. To do this, you can add the value you want returned after the break expression you use to stop the loop;
+that value will be returned out of the loop so you can use it" - Rust book
+
+You can also use `loop` like above to assign a value to a variable:
+
+```rust
+let mut counter = 0;
+
+let result = loop {
+    counter += 1;
+
+    if counter > 11 {
+        break counter * 2;
+    }
+};
+
+```
+
+### Loop labels
+
+"If you have loops within loops, break and continue apply to the innermost loop at that point. You can optionally specify a loop label on a loop that you can then use with
+break or continue to specify that those keywords apply to the labeled loop instead of the innermost loop."
+
+Loop labels begin with a single quote(`'`), here's an example of a loop label from the book:
+
+```rust
+let mut count = 0;
+'counting_up: loop {
+    println!("count = {count}");
+    let mut remaining = 10;
+
+    loop {
+        println!("remaining = {remaining}");
+        if remaining == 9 {
+            break;
+        }
+        if count == 2 {
+            break 'counting_up;
+        }
+        remaining -= 1;
+    }
+
+    count += 1;
+}
+println!("End count = {count}");
+
+```
+
+Here the outer loop has the label `'counting_up` and thus `break 'counting_up` breaks the outer loop instead of the inner loop.
+
+### while
+
+There is also the normal `while` loop here's an example just in case:
+
+```rust
+let mut number = 3;
+
+while number != 0 {
+    println!("{number}!");
+
+    number -= 1;
+}
+
+println!("LIFTOFF!!!");
+```
+
+and ofc, the condition in this case should also be a boolean definitely.
+
+We can also recreate a `while` loop using `loop`, `if`, `else`, here is a simple recreation:
+
+```rust
+let mut number = 3;
+
+while number != 0 {
+    println!("{number}!");
+
+    number -= 1;
+}
+
+println!("LIFTOFF!!!");
+```
+
+**NOTE**: You can't use negative numbers for indexing in Rust, like a[-1] is invalid
+
+### for
+
+Similar to for loops in other languages, no real difference, here's an example:
+
+```rust
+let a = [10, 20, 30, 40, 50];
+
+for element in a {
+    println!("the value is: {element}");
+}
+```
+
+**NOTE**: We can just specify a range like this in Rust:
+
+```rust
+for number in 1..4 {
+    println!("{number}");
+}
+```
+
+This will print 1 to 3, we can also use `rev()` to reverse a list, like `for number in (1..4).rev()`.
