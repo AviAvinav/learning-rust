@@ -302,3 +302,51 @@ because everything in the curly brackets is considered an expression, so y=4 in 
 Thus, {:?} formats the "next" value passed to a formatting macro, and supports anything that implements Debug.
 
 More: https://doc.rust-lang.org/std/fmt/index.html
+
+## if-else statements
+
+The `if` & `else` statements work the same as you had expect it to work in any other language, still here's an example:
+
+```rust
+let number = 3;
+
+if number < 5 {
+    println!("condition was true");
+} else {
+    println!("condition was false");
+}
+```
+
+One thing to note in this however is that the condition in Rust must always be a boolean value unlike in languages like python and js, Rust doesn't automatically
+convert non-boolean types to boolean.
+
+You can also do something like this for multiple cases:
+
+```rust
+let number = 6;
+
+if number % 4 == 0 {
+    println!("number is divisible by 4");
+} else if number % 3 == 0 {
+    println!("number is divisible by 3");
+} else if number % 2 == 0 {
+    println!("number is divisible by 2");
+} else {
+    println!("number is not divisible by 4, 3, or 2");
+}
+```
+
+You can also conditionally assing variables using `if` statement:
+
+```rust
+let smth = if number>4 { 5 } else { 6 };
+// for some variable number
+```
+
+However do keep in mind that in the above example, both 5 and 6 were of the same type, i:e, i32 but if one was string and other an integer, this would have led
+to an error. So, the values in if-else during assignment to a variable should be of the same type.
+
+## Why rust is faster than python or js?
+
+This is just my opinion from what I have learned until now. but the Rust is fast (one of the many reasons) is that it knows the types of everything in advance,
+it doesn't have to wait to determine the types at runtime, where it has to take into account multiple different situations depending on the type determined at runtime.
