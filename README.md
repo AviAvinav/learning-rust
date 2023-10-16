@@ -461,3 +461,26 @@ for number in 1..4 {
 ```
 
 This will print 1 to 3, we can also use `rev()` to reverse a list, like `for number in (1..4).rev()`.
+
+## Stack & Heap
+
+It is necessary to understand Stack and Heap in order to understand Ownership, a unique feature of Rust.
+
+Stack: The same as the general programming concept of stack, which follows LIFO, you cannot take stuff out of the middle. All data on a stack must have a known, fixed size.
+
+Data with an unknown size at compile time or size that may change must be stored in a heap instead of a stack.
+
+Heap: You can think of a heap as big empty space, where you can allocate data. The memory allocator finds an empty spot in the heap, marks it as being in use and returns a pointer, which is the address of the data on the heap. Since,
+pointers have a fixed, known size they can be stored in a stack. Let's take an example, assume you went to a restaurant and the waiter points you to a table suitable for all of you,
+if a friend is late and comes later the waiter will point your friend to you. So, the waiter is the pointer is in this case, the restaurant a heap and your group data.
+
+Pusing to a stack is faster than allocating in the heap because in a stack the allocator doesn't need to look for a place, the location is always at the top of the stack.
+
+Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there. Contemporary processors are faster if they jump around less in memory. Continuing the analogy, consider a server at a restaurant
+taking orders from many tables. It’s most efficient to get all the orders at one table before moving on to the next table. Taking an order from table A, then an order from table B, then one from A again, and then one from B again would be a much slower process.
+By the same token, a processor can do its job better if it works on data that’s close to other data (as it is on the stack) rather than farther away (as it can be on the heap).
+
+When your code calls a function, the values passed into the function (including, potentially, pointers to data on the heap) and the function’s local variables get pushed onto the stack. When the function is over, those values get popped off the stack.
+
+Keeping track of what parts of code are using what data on the heap, minimizing the amount of duplicate data on the heap, and cleaning up unused data on the heap so you don’t run out of space are all problems that ownership addresses. Once you understand ownership,
+you won’t need to think about the stack and the heap very often, but knowing that the main purpose of ownership is to manage heap data can help explain why it works the way it does.
