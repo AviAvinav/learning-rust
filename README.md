@@ -484,3 +484,27 @@ When your code calls a function, the values passed into the function (including,
 
 Keeping track of what parts of code are using what data on the heap, minimizing the amount of duplicate data on the heap, and cleaning up unused data on the heap so you don’t run out of space are all problems that ownership addresses. Once you understand ownership,
 you won’t need to think about the stack and the heap very often, but knowing that the main purpose of ownership is to manage heap data can help explain why it works the way it does.
+
+## Ownership rules in Rust
+
+- Each value in Rust has an owner.
+- There can only be one owner at a time.
+- When the owner goes out of scope, the value will be dropped.
+
+## The String type
+
+The String type is different from the string literal, the string literal is not mutable.
+
+Benefit?
+
+Well using the String type you can append things to a string, because it is not necessary that the string we wish to append to is always fixed, it maybe coming from an input,
+in that case we will use the `from` function from the String type like so:
+
+```rust
+let mut s = String::from("hello");
+
+s.push_str(", world!");
+println!("{}", s);
+```
+
+The String type and string literal differ because they deal with memory differently.
